@@ -11,4 +11,5 @@ Pod::Spec.new do |s|
   s.source_files  = '*.{h,m}'
   s.requires_arc  = true
   s.dependency 'SDWebImage', '~> 3.2'
+  s.dependency 'AFNetworking', '~> 1.3.2'
 end

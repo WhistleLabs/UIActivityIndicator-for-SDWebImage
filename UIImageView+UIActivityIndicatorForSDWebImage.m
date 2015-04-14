@@ -7,6 +7,7 @@
 //
 
 #import "UIImageView+UIActivityIndicatorForSDWebImage.h"
+#import <AFNetworking/AFNetworkActivityIndicatorManager.h>
 
 #define TAG_ACTIVITY_INDICATOR 149462
 
@@ -49,7 +50,8 @@
     }
     
     [activityIndicator startAnimating];
-    
+
+    [[AFNetworkActivityIndicatorManager sharedManager] incrementActivityCount];
 }
 
 -(void) removeActivityIndicator {
@@ -58,7 +60,8 @@
     if (activityIndicator) {
         [activityIndicator removeFromSuperview];
     }
-    
+
+    [[AFNetworkActivityIndicatorManager sharedManager] decrementActivityCount];    
 }
 
 #pragma mark - Methods
