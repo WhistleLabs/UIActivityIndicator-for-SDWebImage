@@ -72,13 +72,11 @@
     [self createActivityIndicatorWithStyle:activityStyle];
     
     __weak typeof(self) weakSelf = self;
-    [self setImageWithURL:url
-         placeholderImage:nil
-                completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
-                    [weakSelf removeActivityIndicator];
-                }
+    [self sd_setImageWithURL:url
+                   completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                       [weakSelf removeActivityIndicator];
+                   }
      ];
-
 }
 
 -(void)setImageWithURL:(NSURL *)url placeholderImage:(UIImage *)placeholder usingActivityIndicatorStyle:(UIActivityIndicatorViewStyle)activityStye {
@@ -86,13 +84,12 @@
     [self createActivityIndicatorWithStyle:activityStye];
     
     __weak typeof(self) weakSelf = self;
-    [self setImageWithURL:url
-         placeholderImage:placeholder
-                completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
-                    [weakSelf removeActivityIndicator];
-                }
+    [self sd_setImageWithURL:url
+            placeholderImage:placeholder
+                   completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                       [weakSelf removeActivityIndicator];
+                   }
      ];
-    
 }
 
 - (void)setImageWithURL:(NSURL *)url placeholderImage:(UIImage *)placeholder options:(SDWebImageOptions)options usingActivityIndicatorStyle:(UIActivityIndicatorViewStyle)activityStyle{
@@ -100,76 +97,71 @@
     [self createActivityIndicatorWithStyle:activityStyle];
     
     __weak typeof(self) weakSelf = self;
-    [self setImageWithURL:url
-         placeholderImage:placeholder
-                  options:options
-                completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
-                    [weakSelf removeActivityIndicator];
-                }
-     ];
-
+    [self sd_setImageWithURL:url
+            placeholderImage:placeholder
+                     options:options
+                   completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                       [weakSelf removeActivityIndicator];
+                   }
+    ];
 }
 
-- (void)setImageWithURL:(NSURL *)url completed:(SDWebImageCompletedBlock)completedBlock usingActivityIndicatorStyle:(UIActivityIndicatorViewStyle)activityStyle {
+- (void)setImageWithURL:(NSURL *)url completed:(SDWebImageCompletionBlock)completedBlock usingActivityIndicatorStyle:(UIActivityIndicatorViewStyle)activityStyle {
 
     [self createActivityIndicatorWithStyle:activityStyle];
     
     __weak typeof(self) weakSelf = self;
-    [self setImageWithURL:url
-                completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
-                    completedBlock(image, error, cacheType);
-                    [weakSelf removeActivityIndicator];
-                }
-     ];
-    
+    [self sd_setImageWithURL:url
+                   completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                       completedBlock(image, error, cacheType, imageURL);
+                       [weakSelf removeActivityIndicator];
+                   }
+    ];
 }
 
-- (void)setImageWithURL:(NSURL *)url placeholderImage:(UIImage *)placeholder completed:(SDWebImageCompletedBlock)completedBlock usingActivityIndicatorStyle:(UIActivityIndicatorViewStyle)activityStyle {
+- (void)setImageWithURL:(NSURL *)url placeholderImage:(UIImage *)placeholder completed:(SDWebImageCompletionBlock)completedBlock usingActivityIndicatorStyle:(UIActivityIndicatorViewStyle)activityStyle {
 
     [self createActivityIndicatorWithStyle:activityStyle];
     
     __weak typeof(self) weakSelf = self;
-    [self setImageWithURL:url
-         placeholderImage:placeholder
-                completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
-                    completedBlock(image, error, cacheType);
-                    [weakSelf removeActivityIndicator];
-                }
-     ];
-
+    [self sd_setImageWithURL:url
+            placeholderImage:placeholder
+                   completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                       completedBlock(image, error, cacheType, imageURL);
+                       [weakSelf removeActivityIndicator];
+                   }
+    ];
 }
 
-- (void)setImageWithURL:(NSURL *)url placeholderImage:(UIImage *)placeholder options:(SDWebImageOptions)options completed:(SDWebImageCompletedBlock)completedBlock usingActivityIndicatorStyle:(UIActivityIndicatorViewStyle)activityStyle {
+- (void)setImageWithURL:(NSURL *)url placeholderImage:(UIImage *)placeholder options:(SDWebImageOptions)options completed:(SDWebImageCompletionBlock)completedBlock usingActivityIndicatorStyle:(UIActivityIndicatorViewStyle)activityStyle {
 
     [self createActivityIndicatorWithStyle:activityStyle];
     
     __weak typeof(self) weakSelf = self;
-    [self setImageWithURL:url
-         placeholderImage:placeholder
-                  options:options
-                completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
-                    completedBlock(image, error, cacheType);
-                    [weakSelf removeActivityIndicator];
-                }
-     ];
-
+    [self sd_setImageWithURL:url
+            placeholderImage:placeholder
+                     options:options
+                   completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                       completedBlock(image, error, cacheType, imageURL);
+                       [weakSelf removeActivityIndicator];
+                   }
+    ];
 }
 
-- (void)setImageWithURL:(NSURL *)url placeholderImage:(UIImage *)placeholder options:(SDWebImageOptions)options progress:(SDWebImageDownloaderProgressBlock)progressBlock completed:(SDWebImageCompletedBlock)completedBlock usingActivityIndicatorStyle:(UIActivityIndicatorViewStyle)activityStyle {
+- (void)setImageWithURL:(NSURL *)url placeholderImage:(UIImage *)placeholder options:(SDWebImageOptions)options progress:(SDWebImageDownloaderProgressBlock)progressBlock completed:(SDWebImageCompletionBlock)completedBlock usingActivityIndicatorStyle:(UIActivityIndicatorViewStyle)activityStyle {
 
     [self createActivityIndicatorWithStyle:activityStyle];
     
     __weak typeof(self) weakSelf = self;
-    [self setImageWithURL:url
-         placeholderImage:placeholder
-                  options:options
-                 progress:progressBlock
-                completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
-                    completedBlock(image, error, cacheType);
-                    [weakSelf removeActivityIndicator];
-                }
-     ];
-
+    [self sd_setImageWithURL:url
+            placeholderImage:placeholder
+                     options:options
+                    progress:progressBlock
+                   completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                       completedBlock(image, error, cacheType, imageURL);
+                       [weakSelf removeActivityIndicator];
+                   }
+    ];
 }
 
 

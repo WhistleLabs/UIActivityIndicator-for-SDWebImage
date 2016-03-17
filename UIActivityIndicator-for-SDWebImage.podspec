@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name          = "UIActivityIndicator-for-SDWebImage"
-  s.version       = "1.0.1"
+  s.version       = "1.0.2"
   s.summary       = "The easiest way to add a UIActivityView to your SDWebImage view."
   s.description   = 'A category that easily allows you to use a UIActivityIndicator in SDWebImage.'
   s.homepage      = "https://github.com/JJSaccolo/UIActivityIndicator-for-SDWebImage"
@@ -10,6 +10,6 @@ Pod::Spec.new do |s|
   s.platform      = :ios, '7.0'
   s.source_files  = '*.{h,m}'
   s.requires_arc  = true
-  s.dependency 'SDWebImage', '~> 3.2'
+  s.dependency 'SDWebImage', '~> 3.7.5'
   s.dependency 'AFNetworking', '~> 2.6.3'
 end
